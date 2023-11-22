@@ -1,0 +1,108 @@
+/* Hero.css */
+
+:root {
+    --primary: #7F00FF;        /* Purple */
+    --dark-primary: #E100FF;   /* Dark Purple */
+    --text-color: #FFFFFF;     /* White */
+    --accent-color: #E100FF;   /* Dark Purple */
+    --contrast-color: #1F3A47; /* Dark Bluish Teal - Contrasting Color */
+}
+
+video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+.hero-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Make it relative to allow z-index to work */
+    z-index: 1; /* Ensure it's above the video background */
+}
+
+.hero-container h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-top: 20px;
+}
+
+.hero-container p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.hero-btns {
+    margin-top: 32px;
+}
+
+.hero-btns .btn {
+    margin: 6px;
+}
+
+.teal-button {
+    background-color: var(--primary);
+    color: var(--text-color);
+    border: 1px solid var(--primary);
+}
+
+.teal-button:hover {
+    background-color: var(--text-color);
+    color: #242424;
+    border: 1px solid var(--text-color);
+    transition: 250ms;
+}
+
+.dark-teal-button {
+    background-color: var(--dark-primary);
+    color: var(--text-color);
+    border: 1px solid var(--dark-primary);
+}
+
+.dark-teal-button:hover {
+    background-color: var(--contrast-color);
+    color: #242424;
+    border: 1px solid var(--contrast-color);
+    transition: 250ms;
+}
+
+@media screen and (max-width: 960px) {
+    .hero-container > h1 {
+        font-size: 70px;
+        margin-top: -150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container > h1 {
+        font-size: 50px;
+        margin-top: -100px;
+    }
+
+    .hero-container > p {
+        font-size: 30px;
+    }
+
+    .btn-mobile {
+        display: block;
+        text-decoration: none;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+.hero-container h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    background: linear-gradient(to right, var(--dark-primary), var(--primary));
+    -webkit-background-clip: text;
+    color: transparent;
+}

@@ -14,7 +14,7 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              src="Images/homeedu.png"
+              src="Images/homeeducation.png"
               text="Empower students with better education through your support"
               title="Education"
               path='/startafundraiser'

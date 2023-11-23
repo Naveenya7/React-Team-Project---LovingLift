@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme, ThemeProvider, makeStyles } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -20,54 +20,7 @@ const theme = createTheme({
   },
 });
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    background: '#FFFFFF',
-    padding: 60,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: 600,
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80vh',
-    width: '90%',
-    margin: 'auto',
-    padding: 40,
-    borderRadius: 10,
-  },
-  textField: {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#7F00FF',
-      },
-      '&:hover fieldset': {
-        borderColor: '#7F00FF',
-      },
-    },
-    margin: '20px 0',
-    width: '100%',
-    fontSize: '1.5rem',
-  },
-  button: {
-    marginTop: 40,
-    width: '100%',
-    fontSize: '1.5rem',
-    padding: '15px',
-    background: 'linear-gradient(to right, #E100FF, #7F00FF)',
-    color: '#FFFFFF',
-    '&:hover': {
-      background: 'linear-gradient(to right, #E100FF, #7F00FF, #006D73)',
-    },
-  },
-}));
-
 const SignUpPage = () => {
-  const classes = useStyles();
   const navigate = useNavigate();
 
   const openNewTab = () => {
@@ -78,20 +31,17 @@ const SignUpPage = () => {
     <div className='signup-container'>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container component="main" maxWidth={false} className={classes.container}>
-          <Paper
-            elevation={3}
-            className={classes.paper}
-          >
+        <Container component="main" maxWidth={false} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', width: '90%', margin: 'auto', padding: 40, borderRadius: 10 }}>
+          <Paper elevation={3} style={{ background: '#FFFFFF', padding: 60, display: 'flex', flexDirection: 'column', alignItems: 'center', width: 600 }}>
             <TextField
-              className={classes.textField}
+              style={{ margin: '20px 0', width: '100%', fontSize: '1.5rem' }}
               required
               fullWidth
               label="Username"
               variant="outlined"
             />
             <TextField
-              className={classes.textField}
+              style={{ margin: '20px 0', width: '100%', fontSize: '1.5rem' }}
               required
               fullWidth
               label="Email Address"
@@ -99,7 +49,7 @@ const SignUpPage = () => {
               variant="outlined"
             />
             <TextField
-              className={classes.textField}
+              style={{ margin: '20px 0', width: '100%', fontSize: '1.5rem' }}
               required
               fullWidth
               label="Password"
@@ -107,7 +57,7 @@ const SignUpPage = () => {
               variant="outlined"
             />
             <Button
-              className={classes.button}
+              style={{ marginTop: 40, width: '100%', fontSize: '1.5rem', padding: '15px', background: 'linear-gradient(to right, #E100FF, #7F00FF)', color: '#FFFFFF' }}
               type="submit"
               fullWidth
               variant="contained"

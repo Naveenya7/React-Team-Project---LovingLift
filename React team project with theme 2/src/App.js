@@ -5,6 +5,7 @@ import Home from './Components/Pages/Home';
 import Signup from './Components/Pages/Signup'; 
 import Login from './Components/Pages/Login';
 import './App.css';
+import FundRaiserForm from './Components/Pages/FundRaiserForm';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login/>}/>
+          <Route path='/startafundraiser' element={<FundRaiserForm/>}/>
           
 
         </Routes>

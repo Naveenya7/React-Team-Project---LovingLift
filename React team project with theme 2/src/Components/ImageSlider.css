@@ -3,7 +3,7 @@
     max-width: 75%;
     height: 550px;
     overflow: hidden;
-    margin: auto; /* Center the slider on the page */
+    margin: auto; 
     padding: 30px;
     text-align: center;
     border-radius: 40px;
@@ -14,6 +14,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease-in-out;
+    border-radius: 30px;
   }
   
   .image-slider img:first-child {

@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import './Footer.css';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
 function Footer() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_sngehol', 'template_nms18aj', form.current, 'vov7j5Fn-c3aByaA5')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
@@ -14,7 +27,7 @@ function Footer() {
           Stay connected with our mission and impact.
         </p>
         <div className='input-areas'>
-          <form>
+          <form ref={form} onSubmit={sendEmail}>
             <input
               className='footer-input'
               name='email'
@@ -101,4 +114,3 @@ function Footer() {
 }
 
 export default Footer;
-

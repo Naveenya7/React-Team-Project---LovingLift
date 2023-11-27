@@ -6,9 +6,9 @@ import Signup from './Components/Pages/Signup';
 import Login from './Components/Pages/Login';
 import './App.css';
 import FundRaiserForm from './Components/Pages/FundRaiserForm';
-
-
-
+import Howitworks from './Components/Pages/Howitworks';
+import Browsepage from './Components/Pages/Browsepage';
+import DonationForm from './Components/Pages/Donate';
 function App() {
   return (
     <>
@@ -21,6 +21,9 @@ function App() {
         <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login/>}/>
           <Route path='/startafundraiser' element={<FundRaiserForm/>}/>
+          <Route path='/howitworks' element={<Howitworks/>}/>
+          <Route path='/browsefundraisers'element={<Browsepage/>}/>
+          <Route path='/donate'element={<DonationForm/>}/>
           
 
         </Routes>

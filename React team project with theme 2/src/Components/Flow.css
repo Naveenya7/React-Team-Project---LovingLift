@@ -1,0 +1,51 @@
+/* Flow.css */
+
+.flow-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: transparent; 
+    color: var(--text-color);
+    border-radius: 10px;
+    padding-top: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .step {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+  }
+  h1{
+    margin-bottom: 50px;
+  }
+  
+  .icon {
+    font-size: 2em;
+    margin-right: 20px;
+    color: var(--dark-primary);
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+  }
+  
+  p {
+    padding-left: 20px;
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: var(--text-color);
+  }
+  
+  .icon {
+    flex-shrink: 0;
+  }
+  
+  .step-text {
+    flex-grow: 1;
+  }
+  .secondd{
+    padding-left: 20px;
+  }

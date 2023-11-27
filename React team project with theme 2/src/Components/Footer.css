@@ -152,7 +152,9 @@
     .footer-input {
       width: 100%;
     }
-  
+    .process-flow-heading {
+      margin-bottom: 20px; 
+    }
     .btn {
       width: 100%;
     }

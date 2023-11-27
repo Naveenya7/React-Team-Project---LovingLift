@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './Login.css';
+import axios from 'axios';
 
 const theme = createTheme({
   palette: {
@@ -68,7 +69,29 @@ const LoginPage = () => {
   const openNewTab = () => {
     navigate('/signup');
   };
-
+  const  [email,setemail]=useState('');
+  const [pass,setpass]=useState('');
+  const handlec = (e) => {
+    e.preventDefault();
+    axios.get(`http://localhost:8001/users?email=${email}`)
+      .then(res => {
+        if (res.data.length > 0) {
+          axios.get(`http://localhost:8001/users?pass=${pass}`)
+            .then(res => {
+              if (res.data.length > 0) {
+                alert('Login successful');
+              } else {
+                alert('Invalid password');
+              }
+            })
+            .catch(err => console.log(err));
+        } else {
+          alert('Invalid username');
+        }
+      })
+      .catch(err => console.log(err));
+  }
+  
   return (
     <div className='login-container'>
       <ThemeProvider theme={theme}>
@@ -86,7 +109,9 @@ const LoginPage = () => {
               fullWidth
               label="Username or Email"
               variant="outlined"
-            />
+              value={email}  
+              onChange={res=>{setemail(res.target.value)}}
+              />
             <TextField
               style={styles.textField}
               required
@@ -94,12 +119,15 @@ const LoginPage = () => {
               label="Password"
               type="password"
               variant="outlined"
+              value={pass}  
+              onChange={res=>{setpass(res.target.value)}}
             />
             <Button
               style={styles.button}
               type="submit"
               fullWidth
               variant="contained"
+              onClick={handlec}
             >
               Log In
             </Button>

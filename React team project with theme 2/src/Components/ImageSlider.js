@@ -14,12 +14,12 @@ const ImageSlider = ({ images }) => {
   };
 
   useEffect(() => {
-    // Automatically advance to the next image every 3 seconds
+    
     const interval = setInterval(() => {
       nextImage();
     }, 3000);
 
-    // Clean up the interval when the component is unmounted
+    
     return () => clearInterval(interval);
   }, [currentImage]);
 

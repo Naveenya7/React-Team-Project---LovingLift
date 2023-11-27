@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useFundraiser } from './FundraiserContext';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -62,71 +64,134 @@ const styles = {
 };
 
 const FundraiserForm = () => {
+  const { updateFundraiserData } = useFundraiser();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    fundraiserName: '',
+    goalAmount: '',
+    description: '',
+    organizerName: '',
+    contactEmail: '',
+    startDate: '',
+    endDate: '',
+  });
+
+  const [image, setImage] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateFundraiserData({ ...formData, image });
+    navigate('/browsefundraisers');
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="md" style={styles.container}>
-        <Paper elevation={3} style={{ ...styles.paper }}>
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Fundraiser Name"
-            variant="outlined"
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Goal Amount"
-            type="number"
-            variant="outlined"
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Description"
-            multiline
-            rows={3}
-            variant="outlined"
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Organizer Name"
-            variant="outlined"
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Contact Email"
-            type="email"
-            variant="outlined"
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="Start Date"
-            type="date"
-            variant="outlined"
-            InputLabelProps={{ shrink: true }}
-          />
-          <TextField
-            style={styles.textField}
-            required
-            fullWidth
-            label="End Date"
-            type="date"
-            variant="outlined"
-            InputLabelProps={{ shrink: true }}
-          />
-          <Button style={styles.button} type="submit" fullWidth variant="contained">
-            Create Fundraiser
-          </Button>
+        <Paper elevation={3} style={styles.paper}>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Fundraiser Name"
+              variant="outlined"
+              name="fundraiserName"
+              value={formData.fundraiserName}
+              onChange={handleChange}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="Goal Amount"
+              type="number"
+              variant="outlined"
+              name="goalAmount"
+              value={formData.goalAmount}
+              onChange={handleChange}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="Description"
+              multiline
+              rows={3}
+              variant="outlined"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="Organizer Name"
+              variant="outlined"
+              name="organizerName"
+              value={formData.organizerName}
+              onChange={handleChange}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="Contact Email"
+              type="email"
+              variant="outlined"
+              name="contactEmail"
+              value={formData.contactEmail}
+              onChange={handleChange}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="Start Date"
+              type="date"
+              variant="outlined"
+              name="startDate"
+              value={formData.startDate}
+              onChange={handleChange}
+              InputLabelProps={{ shrink: true }}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <TextField
+              label="End Date"
+              type="date"
+              variant="outlined"
+              name="endDate"
+              value={formData.endDate}
+              onChange={handleChange}
+              InputLabelProps={{ shrink: true }}
+              required
+              fullWidth
+              style={styles.textField}
+            />
+            <input
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              onChange={handleImageChange}
+              style={styles.textField}
+            />
+            <Button type="submit" variant="contained" fullWidth style={styles.button}>
+              Create Fundraiser
+            </Button>
+          </form>
         </Paper>
       </Container>
     </ThemeProvider>

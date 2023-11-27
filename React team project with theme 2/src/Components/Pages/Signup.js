@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import './Signup.css';
 
 const theme = createTheme({
@@ -26,7 +27,18 @@ const SignUpPage = () => {
   const openNewTab = () => {
     navigate('/login');
   };
-
+  const [name,setname]=useState('');
+    const [email,setemail]=useState('');
+    const [pass,setpass]=useState('');
+    const handc =(e)=>{
+          // console.log('Signed in successfully')
+         e.preventDefault();
+        axios.post('http://localhost:8001/users',{
+          name,email,pass
+        })
+        .then(res=>alert('sign up succesful'))
+        .catch(err=>console.log(err)); 
+    }
   return (
     <div className='signup-container'>
       <ThemeProvider theme={theme}>
@@ -39,7 +51,9 @@ const SignUpPage = () => {
               fullWidth
               label="Username"
               variant="outlined"
-            />
+              value={name} 
+              onChange={(event)=>{setname(event.target.value)}}
+              />
             <TextField
               style={{ margin: '20px 0', width: '100%', fontSize: '1.5rem' }}
               required
@@ -47,7 +61,9 @@ const SignUpPage = () => {
               label="Email Address"
               type="email"
               variant="outlined"
-            />
+              value={email} 
+              onChange={(event)=>{setemail(event.target.value)}}
+              />
             <TextField
               style={{ margin: '20px 0', width: '100%', fontSize: '1.5rem' }}
               required
@@ -55,12 +71,15 @@ const SignUpPage = () => {
               label="Password"
               type="password"
               variant="outlined"
+              value={pass} 
+              onChange={(event)=>{setpass(event.target.value)}}
             />
             <Button
               style={{ marginTop: 40, width: '100%', fontSize: '1.5rem', padding: '15px', background: 'linear-gradient(to right, #E100FF, #7F00FF)', color: '#FFFFFF' }}
               type="submit"
               fullWidth
               variant="contained"
+              onClick={handc}
             >
               Sign Up
             </Button>
